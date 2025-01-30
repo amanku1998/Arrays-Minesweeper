@@ -1,5 +1,5 @@
 #pragma once
-#include "../../header/GamePlay/Board/BoardController.h"
+#include "../../header/Gameplay/Board/BoardView.h"
 
 namespace Gameplay
 {
@@ -7,7 +7,6 @@ namespace Gameplay
 	{
 		class BoardController
 		{
-
 		public:
 
 			static const int number_of_rows = 9;
@@ -23,10 +22,11 @@ namespace Gameplay
 			void reset();
 
 		private:
+			BoardView* board_view;
+
 			void createBoard();
 			void deleteBoard();
 			void destroy();
-
 		};
 	}
 }
