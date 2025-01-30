@@ -1,5 +1,8 @@
 #include "../../header/GamePlay/Cell/CellController.h"
+#include "../../header/Gameplay/Cell/CellModel.h"
 #include "../../header/Gameplay/Cell/CellView.h"
+#include "../../header/Sound/SoundService.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Gameplay
 {
@@ -7,6 +10,7 @@ namespace Gameplay
 	{
 		CellController::CellController()
 		{
+			cell_model = new CellModel();
 			cell_view = new CellView(this);
 		}
 
@@ -30,14 +34,29 @@ namespace Gameplay
 			cell_view->render();
 		}
 
-		void CellController::destroy()
+		CellState CellController::getCellState()
 		{
-			delete (cell_view);
+			return cell_model->getCellState();
 		}
+
+		CellValue CellController::getCellValue()
+		{
+			return cell_model->getCellValue();
+		}
+
+		//sf::Vector2i CellController::getCellPosition()
+		//{
+		//	return cell_model->getCellPosition();
+		//}
 
 		void CellController::reset()
 		{
-			
+			cell_model->reset();
+		}
+
+		void CellController::destroy()
+		{
+			delete (cell_view);
 		}
 	}
 }

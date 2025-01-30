@@ -18,6 +18,7 @@ namespace Gameplay
 			UI::UIElement::ButtonView* cell_button;
 
 			CellController* cell_controller;
+			int slice_count = 12;
 
 			void initializeButtonImage(float width, float height);
 
@@ -28,6 +29,7 @@ namespace Gameplay
 			void initialize();
 			void update();
 			void render();
+			void setCellTexture();
 		};
 	}
 }
