@@ -1,10 +1,12 @@
 #pragma once
-#include "../../header/Gameplay/Board/BoardView.h"
+#include "../../header/Gameplay/Cell/CellController.h"
 
 namespace Gameplay
 {
 	namespace Board
 	{
+		class BoardView;
+
 		class BoardController
 		{
 		public:
@@ -23,10 +25,13 @@ namespace Gameplay
 
 		private:
 			BoardView* board_view;
+			Cell::CellController* cell;
 
 			void createBoard();
-			void deleteBoard();
+			void initializeCells();
 			void destroy();
+			void resetBoard();
+			void deleteBoard();
 		};
 	}
 }
