@@ -4,9 +4,9 @@ namespace Gameplay
 {
 	namespace Cell
 	{
-		CellModel::CellModel(int cellIndex)
+		CellModel::CellModel(sf::Vector2i grid_position)
 		{
-			cell_index = cellIndex;
+			setCellPosition(grid_position);
 			////Set as default
 			setCellState(CellState::HIDDEN);
 			setCellValue(CellValue::EMPTY);
@@ -34,20 +34,15 @@ namespace Gameplay
 			cell_value = value;
 		}
 
-		int CellModel::getCellIndex()
+		sf::Vector2i CellModel::getCellPosition()
 		{
-			return cell_index;
+			return position;
 		}
 
-		//sf::Vector2i CellModel::getCellPosition()
-		//{
-		//	return position;
-		//}
-
-		//void CellModel::setCellPosition(sf::Vector2i grid_position)
-		//{
-		//	position = grid_position;
-		//}
+		void CellModel::setCellPosition(sf::Vector2i grid_position)
+		{
+			position = grid_position;
+		}
 
 		void CellModel::reset()
 		{

@@ -26,7 +26,8 @@ namespace Gameplay
 		private:
 			BoardView* board_view;
 			//Cell::CellController* cell;
-			Cell::CellController* cells[number_of_columns];
+			//Cell::CellController* cells[number_of_columns];
+			Cell::CellController* board[number_of_rows][number_of_columns];
 
 			void createBoard();
 			void initializeCells();
