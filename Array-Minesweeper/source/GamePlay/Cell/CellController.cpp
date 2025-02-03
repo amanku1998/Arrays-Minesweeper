@@ -8,6 +8,9 @@ namespace Gameplay
 {
 	namespace Cell
 	{
+		using namespace Global;
+		using namespace Sound;
+
 		CellController::CellController(sf::Vector2i pos)
 		{
 			cell_model = new CellModel(pos);
@@ -49,11 +52,6 @@ namespace Gameplay
 			return cell_model->getCellPosition();
 		}
 
-		//sf::Vector2i CellController::getCellPosition()
-		//{
-		//	return cell_model->getCellPosition();
-		//}
-
 		void CellController::reset()
 		{
 			cell_model->reset();
@@ -62,6 +60,30 @@ namespace Gameplay
 		void CellController::destroy()
 		{
 			delete (cell_view);
+		}
+
+		void CellController::openCell()
+		{
+			if (cell_model->getCellState() != CellState::FLAGGED)
+			{
+				cell_model->setCellState(CellState::OPEN);
+				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
+			}
+		}
+
+		void CellController::flagCell()
+		{
+			switch (cell_model->getCellState())
+			{
+			case::Gameplay::Cell::CellState::FLAGGED:
+				cell_model->setCellState(CellState::HIDDEN);
+				break;
+			case::Gameplay::Cell::CellState::HIDDEN:
+				cell_model->setCellState(CellState::FLAGGED);
+				break;
+			}
+
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::FLAG);
 		}
 	}
 }

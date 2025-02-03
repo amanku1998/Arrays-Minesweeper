@@ -6,8 +6,9 @@ namespace Gameplay
 {
 	namespace Cell
 	{
-		using namespace Global;
 		using namespace UI::UIElement;
+		using namespace Global;
+		using namespace Sound;
 
 		CellView::CellView(CellController* controller)
 		{
@@ -30,6 +31,7 @@ namespace Gameplay
 			sf::Vector2f cell_screen_position = getCellScreenPosition(width, height);
 
 			cell_button->initialize("Cell", Config::cells_texture_path, width * slice_count, height, cell_screen_position);
+			registerButtonCallback();
 		}
 
 		void CellView::update()
@@ -75,6 +77,24 @@ namespace Gameplay
 			case::Gameplay::Cell::CellState::FLAGGED:
 				//If cell  is flagged, draw the 12th image, i.e. FLAG
 				cell_button->setTextureRect(sf::IntRect(11 * tile_size, 0, tile_size, tile_size));
+				break;
+			}
+		}
+
+		void CellView::registerButtonCallback()
+		{
+			cell_button->registerCallbackFuntion(std::bind(&CellView::cellButtonCallback, this, std::placeholders::_1));
+		}
+
+		void CellView::cellButtonCallback(ButtonType button_type)
+		{
+			switch (button_type)
+			{
+			case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
+				cell_controller->openCell();
+				break;
+			case UI::UIElement::ButtonType::RIGHT_MOUSE_BUTTON:
+				cell_controller->flagCell();
 				break;
 			}
 		}

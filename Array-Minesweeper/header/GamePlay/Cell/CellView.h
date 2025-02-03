@@ -1,13 +1,10 @@
 #pragma once
 #include "../../UI/UIElement/ButtonView.h"
-#include "../../UI/UIElement/ImageView.h"
 
 namespace Gameplay
 {
 	namespace Cell
 	{
-		using namespace UI::UIElement;
-
 		class CellController;
 
 		class CellView
@@ -34,6 +31,9 @@ namespace Gameplay
 			void setCellTexture();
 
 			sf::Vector2f getCellScreenPosition(float width, float height);
+			void registerButtonCallback();
+			void cellButtonCallback(UI::UIElement::ButtonType button_type);
+
 		};
 	}
 }
