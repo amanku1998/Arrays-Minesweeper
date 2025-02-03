@@ -18,6 +18,7 @@ namespace Gameplay
 
 		void startGame();
 		void destroy();
+		float getRemainingTime();
 
 	};
 

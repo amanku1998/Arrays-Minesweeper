@@ -5,7 +5,8 @@ namespace Gameplay
 	class GameplayController
 	{
 	private:
-
+		const float max_duration = 301.f;
+		float remaining_time;
 
 	public:
 		GameplayController();
@@ -15,6 +16,8 @@ namespace Gameplay
 		void update();
 		void render();
 
-		void reset();
+		void restart();
+		void updateRemainingTime();
+		float getRemainingTime();
 	};
 }

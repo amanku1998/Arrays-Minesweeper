@@ -1,7 +1,10 @@
 #include "../../header/GamePlay/GameplayController.h"
+#include "../../header/Global/ServiceLocator.h"
 
 namespace Gameplay
 {
+	using namespace Global;
+
 	GameplayController::GameplayController()
 	{
 
@@ -19,7 +22,7 @@ namespace Gameplay
 
 	void GameplayController::update()
 	{
-
+		updateRemainingTime();
 	}
 
 	void GameplayController::render()
@@ -27,8 +30,18 @@ namespace Gameplay
 
 	}
 
-	void GameplayController::reset()
+	void GameplayController::restart()
 	{
+		remaining_time = max_duration;
+	}
 
+	void GameplayController::updateRemainingTime()
+	{
+		remaining_time -= ServiceLocator::getInstance()->getTimeService()->getDeltaTime();
+	}
+
+	float GameplayController::getRemainingTime()
+	{
+		return remaining_time;
 	}
 }
