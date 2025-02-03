@@ -43,7 +43,9 @@ namespace UI
 			void createTexts();
 			void initializeTexts();
 			void initializeTimeText();
+			void initializeMineText();
 			void updateTimeText();
+			void updateMineText();
 			void destroy();
 		};
 	}

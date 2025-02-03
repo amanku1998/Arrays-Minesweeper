@@ -12,12 +12,12 @@ namespace Gameplay
 
 	GameplayController::~GameplayController()
 	{
-
+		board_service = nullptr;
 	}
 
 	void GameplayController::initialize()
 	{
-
+		board_service = ServiceLocator::getInstance()->getBoardService();
 	}
 
 	void GameplayController::update()
@@ -43,5 +43,10 @@ namespace Gameplay
 	float GameplayController::getRemainingTime()
 	{
 		return remaining_time;
+	}
+
+	int GameplayController::getMinesCount()
+	{
+		return board_service->getMinesCount();
 	}
 }
