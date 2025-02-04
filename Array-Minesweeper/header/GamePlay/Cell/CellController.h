@@ -30,6 +30,7 @@ namespace Gameplay
 			sf::Vector2i getCellPosition();
 			void openCell();
 			void flagCell();
+			bool canOpenCell();
 
 			void reset();
 		};
