@@ -1,6 +1,8 @@
 #pragma once
+#include <SFML/Graphics.hpp>
 #include "../../header/Gameplay/Cell/CellController.h"
 #include "../../UI/UIElement/ButtonView.h"
+#include <random>
 
 namespace Gameplay
 {
@@ -10,6 +12,13 @@ namespace Gameplay
 		using namespace UI::UIElement;
 		class BoardView;
 
+		enum class BoardState
+		{
+			FIRST_CELL,       // The state when the player opens first cell.
+			PLAYING,          // The game is in progress.
+			COMPLETED,    // The game is over.
+		};
+
 		class BoardController
 		{
 		public:
@@ -17,7 +26,6 @@ namespace Gameplay
 			static const int number_of_rows = 9;
 			static const int number_of_columns = 9;
 			static const int mines_count = 8;
-			int flagged_cells;
 
 			BoardController();
 			~BoardController();
@@ -28,14 +36,32 @@ namespace Gameplay
 			void reset();
 
 			int getMinesCount();
-			void openCell(sf::Vector2i cell_position);
+
 			void processCellInput(CellController* cell_controller, ButtonType button_type);
-			void flagCell(sf::Vector2i cell_position);
+
+			BoardState getBoardState();
+			void setBoardState(BoardState state);
 
 		private:
-			BoardView* board_view;
 
+			BoardView* board_view;
 			Cell::CellController* board[number_of_rows][number_of_columns];
+
+			std::default_random_engine random_engine;
+			std::random_device random_device;
+
+			BoardState board_state;
+			int flagged_cells;
+
+			void populateBoard(sf::Vector2i cell_position);
+			void populateMines(sf::Vector2i cell_position);
+			void pupulateCells();
+
+			void openCell(sf::Vector2i cell_position);
+			void flagCell(sf::Vector2i cell_position);
+
+			int countMinesAround(sf::Vector2i cell_position);
+			bool isValidCellPosition(sf::Vector2i cell_position);
 
 			void createBoard();
 			void initializeCells();
