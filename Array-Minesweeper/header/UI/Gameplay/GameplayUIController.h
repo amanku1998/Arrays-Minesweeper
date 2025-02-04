@@ -41,12 +41,17 @@ namespace UI
 			UIElement::ButtonView* restart_button;
 
 			void createTexts();
+			void createButton();
 			void initializeTexts();
+			void initializeButton();
 			void initializeTimeText();
 			void initializeMineText();
 			void updateTimeText();
 			void updateMineText();
 			void destroy();
+
+			void registerButtonCallback();
+			void restartButtonCallback();
 		};
 	}
 }
