@@ -66,6 +66,9 @@ namespace Gameplay
 			void openAllCells();
 			void processCellValue(sf::Vector2i cell_position);
 
+			void openEmptyCells(sf::Vector2i cell_position);
+			void processEmptyCell(sf::Vector2i cell_position);
+
 			void createBoard();
 			void initializeCells();
 			void destroy();
