@@ -248,16 +248,46 @@ namespace Gameplay
 
 		void BoardController::openAllCells()
 		{
-			if (board_state == BoardState::FIRST_CELL)
-			{
-				populateBoard(sf::Vector2i(0, 0));
-			}
+			//if (board_state == BoardState::FIRST_CELL)
+			//{
+			//	populateBoard(sf::Vector2i(0, 0));
+			//}
 
 			for (int a = 0; a < number_of_rows; ++a)
 			{
 				for (int b = 0; b < number_of_columns; ++b)
 				{
 					board[a][b]->openCell();
+				}
+			}
+		}
+
+		void BoardController::showBoard()
+		{
+			switch (ServiceLocator::getInstance()->getBoardService()->getBoardState())
+			{
+			case Gameplay::Board::BoardState::FIRST_CELL:
+				populateBoard(sf::Vector2i(0, 0));
+				openAllCells();
+				break;
+			case Gameplay::Board::BoardState::PLAYING:
+				openAllCells();
+				break;
+			case Gameplay::Board::BoardState::COMPLETED:
+				break;
+			default:
+				break;
+			}
+		}
+
+		void BoardController::flagAllMines()
+		{
+			for (int row = 0; row < number_of_rows; ++row)
+			{
+				for (int col = 0; col < number_of_columns; ++col)
+				{
+					if (board[row][col]->getCellValue() == CellValue::MINE && board[row][col]->getCellState() != CellState::FLAGGED)
+						flagCell(sf::Vector2i(row, col));
 				}
 			}
 		}
@@ -270,7 +300,7 @@ namespace Gameplay
 				processEmptyCell(cell_position);
 				break;
 			case::Gameplay::Cell::CellValue::MINE:
-				//processMineCell(cell_position); Yet to implement
+				processMineCell(cell_position);
 				break;
 			default:
 				ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
@@ -321,6 +351,12 @@ namespace Gameplay
 		{
 			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::BUTTON_CLICK);
 			openEmptyCells(cell_position);
+		}
+
+		void BoardController::processMineCell(sf::Vector2i cell_position)
+		{
+			ServiceLocator::getInstance()->getSoundService()->playSound(SoundType::EXPLOSION);
+			ServiceLocator::getInstance()->getGameplayService()->endGame(GameResult::LOST);
 		}
 	}
 }

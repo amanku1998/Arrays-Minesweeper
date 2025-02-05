@@ -36,6 +36,26 @@ namespace Gameplay
 			board_controller->reset();
 		}
 
+		BoardState BoardService::getBoardState()
+		{
+			return board_controller->getBoardState();
+		}
+
+		void BoardService::setBoardState(BoardState state)
+		{
+			board_controller->setBoardState(state);
+		}
+
+		void BoardService::showBoard()
+		{
+			board_controller->showBoard();
+		}
+
+		void BoardService::flagAllMines()
+		{
+			board_controller->flagAllMines();
+		}
+
 		void BoardService::destroy()
 		{
 			delete(board_controller);

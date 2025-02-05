@@ -22,7 +22,11 @@ namespace Gameplay
 			void render();
 			void resetBoard();
 			int getMinesCount();
+			BoardState getBoardState();
+			void setBoardState(BoardState state);
+			void flagAllMines();
 			void processCellInput(CellController* cell_controller, ButtonType button_type);
+			void showBoard();
 
 		private:
 
