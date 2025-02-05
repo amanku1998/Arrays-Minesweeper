@@ -63,6 +63,8 @@ namespace Gameplay
 			int countMinesAround(sf::Vector2i cell_position);
 			bool isValidCellPosition(sf::Vector2i cell_position);
 
+			void openAllCells();
+
 			void createBoard();
 			void initializeCells();
 			void destroy();
