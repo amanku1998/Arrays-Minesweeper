@@ -151,6 +151,9 @@ namespace Gameplay
 
 		void BoardController::processCellInput(CellController* cell_controller, ButtonType button_type)
 		{
+			if (board_state == BoardState::COMPLETED)
+				return; // Returning doesn't allow processing input and hence input is disabled
+
 			switch (button_type)
 			{
 			case UI::UIElement::ButtonType::LEFT_MOUSE_BUTTON:
