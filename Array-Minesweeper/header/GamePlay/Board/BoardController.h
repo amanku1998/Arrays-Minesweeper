@@ -64,6 +64,7 @@ namespace Gameplay
 			bool isValidCellPosition(sf::Vector2i cell_position);
 
 			void openAllCells();
+			void processCellValue(sf::Vector2i cell_position);
 
 			void createBoard();
 			void initializeCells();
