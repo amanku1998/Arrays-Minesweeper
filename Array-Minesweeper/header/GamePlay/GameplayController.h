@@ -40,5 +40,6 @@ namespace Gameplay
 		void showCredits();
 		void gameLost();
 		void gameWon();
+		bool isTimeOver();
 	};
 }
