@@ -2,17 +2,16 @@
 #include "../../header/Gameplay/Board/BoardView.h"
 #include "../../header/Gameplay/Cell/CellController.h"
 #include "../../header/Gameplay/Cell/CellModel.h"
-#include "../../header/Sound/SoundService.h"
 #include "../../header/Global/ServiceLocator.h"
+#include "../../header/Sound/SoundService.h"
 
 namespace Gameplay
 {
 	namespace Board
 	{
+		using namespace Cell;
 		using namespace Global;
 		using namespace Sound;
-		using namespace Cell;
-		using namespace UI::UIElement;
 
 		BoardController::BoardController() : random_engine(random_device())
 		{
@@ -125,11 +124,6 @@ namespace Gameplay
 
 		void BoardController::openCell(sf::Vector2i cell_position)
 		{
-			//if (board[cell_position.x][cell_position.y]->canOpenCell())
-			//{
-			//	board[cell_position.x][cell_position.y]->openCell();
-			//}
-
 			if (board[cell_position.x][cell_position.y]->canOpenCell())
 			{
 				if (board_state == BoardState::FIRST_CELL)

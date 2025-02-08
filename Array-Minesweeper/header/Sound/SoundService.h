@@ -19,7 +19,7 @@ namespace Sound
 		sf::Music background_music;
 		sf::Sound sound_effect;
 		sf::SoundBuffer buffer_button_click;
-		sf::SoundBuffer buffer_button_flag;
+		sf::SoundBuffer buffer_flag_sound;
 		sf::SoundBuffer buffer_explosion;
 		sf::SoundBuffer buffer_game_won;
 

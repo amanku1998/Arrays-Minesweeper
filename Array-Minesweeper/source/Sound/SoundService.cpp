@@ -21,8 +21,7 @@ namespace Sound
 	{
 		if (!buffer_button_click.loadFromFile(Config::button_click_sound_path))
 			printf("Error loading background music file");
-
-		if (!buffer_button_flag.loadFromFile(Config::flag_sound_path))
+		if (!buffer_flag_sound.loadFromFile(Config::flag_sound_path))
 			printf("Error loading background music file");
 		if (!buffer_explosion.loadFromFile(Config::explosion_sound_path))
 			printf("Error loading background music file");
@@ -38,7 +37,7 @@ namespace Sound
 			sound_effect.setBuffer(buffer_button_click);
 			break;
 		case SoundType::FLAG:
-			sound_effect.setBuffer(buffer_button_flag);
+			sound_effect.setBuffer(buffer_flag_sound);
 			break;
 		case SoundType::EXPLOSION:
 			sound_effect.setBuffer(buffer_explosion);
